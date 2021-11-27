@@ -1,5 +1,9 @@
 import java.awt.geom.Point2D;
 
+/**
+ * extends point2D, shall hold x and y cordinates
+ * very simple obj, gonna be used as representing vertex cordinates of the maze
+ */
 public class Point extends Point2D {
     double _x;
     double _y;

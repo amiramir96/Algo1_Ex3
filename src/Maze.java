@@ -2,13 +2,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * the object represnt a maze via vertexes in m rows X n columns:
+ *  the vertexes represented by integers indexes along a array (NOTE!- ea n vertexes can represent a row in the maze!)
+ *  the edges represented by edge object that hold two ver fields - from, to AND field of "existence" so we shall know if to paint it in the future proccess
+ *  thinking of that ea vertex can hold NOT MORE THAN 2 edges that going FROM him, and same with 2 edges that going TO him
+ *  even through we look here on the graph as not mekuvan
+ */
 public class Maze {
 
-    int _row; // how many row
-    int _col; // how many col
-    List<Edge> edgeList; // hold all edges
-    List<Edge> printEdges; //which edge to print?
-    UnionFind uf; // our UnionFind algo structre
+    protected int _row; // how many row
+    protected int _col; // how many col
+    private List<Edge> edgeList; // hold all edges
+    protected List<Edge> printEdges; //which edge to print?
+    protected UnionFind uf; // our UnionFind algo structre
     /**
      * create the maze
      * @param m - num of rows
@@ -32,7 +39,7 @@ public class Maze {
      * will remove in the end the entrance and exit "walls" of the maze  (edge that represents them) from the printEdges
      * now the Maze pattern is existing, all is left is to print all the edges
      */
-    public void proccessMaze(){
+    protected void proccessMaze(){
         int exitEdge = this.printEdges.size() - this._col;
         Collections.shuffle(this.edgeList);
         for (Edge edge : this.edgeList) { //run on all edges

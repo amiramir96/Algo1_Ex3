@@ -2,15 +2,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class myFrame extends JFrame {
+/**
+ * this obj purpose is to paint maze which meanse:
+ *  get input of maze object
+ *  extract his edges
+ *  transfer the vertex which represented by integers to cordinates of (x,y) of a point in horizon
+ *  paint the maze via draw lines -> draw ea edge -> draw a line from vertex v1 to v2 -> draw a line from (x1,y1) to (x2,y2)
+ */
 
+public class myFrame extends JFrame {
     Maze currMaze;
     Point2D[] pointsArr;
     double lenConst;
     double widthConst;
 
+    /**
+     * const the window for painting (create a frame)
+     * @param ourMaze get a maze
+     */
     myFrame(Maze ourMaze){
-        //JFrame frame = new JFrame(); // create a frame
         this.currMaze = ourMaze;
         initializePoints(ourMaze);
         this.setTitle("zEam!");
@@ -21,17 +31,18 @@ public class myFrame extends JFrame {
     }
 
     /**
-     * gonna trnafer vertex from the maze to point cor
+     * gonna trnafer vertex from the maze to point cordinates
      * @param ourMaze - work on maze array that rpresents vertex of graph
      */
     private void initializePoints(Maze ourMaze) {
         int row = ourMaze._row;
         int col = ourMaze._col;
+        //dist between point to point to be proportional
         this.widthConst = ((double)500/col);
         this.lenConst = ((double)500/row);
-//        System.out.println("for x scale: "+widthConst+" for y scale:"+lenConst);
-        this.pointsArr = new Point2D[row*col];
+        this.pointsArr = new Point2D[ourMaze.uf.vertex.length]; //amount of points as amount of vertexes of the maze
         for (int i=0; i < this.pointsArr.length; i++){
+            //for more info look on linearTrans func details
             this.pointsArr[i] = linearTrans(i, row, col);
         }
     }
@@ -47,12 +58,20 @@ public class myFrame extends JFrame {
      * @return relevant point
      */
     private Point2D linearTrans(int num, int row, int col) {
-        Point p = new Point(150+(num % col) * this.widthConst, 150+num / col * this.lenConst);
+        // the "neto" window is 500*500 size in the middle of the whole 750*750 picture
+        Point p = new Point(125+(num % col) * this.widthConst, 125+num / col * this.lenConst);
         return p;
     }
 
+    /**
+     * paint the maze
+     * move through the whole printEdges list of the maze and paint ea edge via the (x,y) cordinates (from -> to)
+     * @param g - built in of JAVA implement
+     */
+
     public void paint(Graphics g) {
         Graphics2D g2D = (Graphics2D)g;
+
         for(Edge edge: this.currMaze.printEdges){
             int from = edge._from;
             int to = edge._to;
