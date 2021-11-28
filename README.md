@@ -31,7 +31,7 @@ side note: we used the Swing built in system of java to paint the maze
 
 
 ## results
-this is the output of the code for given m,n integers output <br>
+this is the output of the code for given m = 50, n = 50 integers (maze graph is 50x50) <br>
 ![Screenshot_2](https://user-images.githubusercontent.com/89981387/143723839-8ef9f7d2-8e54-46cb-a6a4-be42f8ef4888.png)
 
 #### created by Amir.Sabag and Ori.Darshan
