@@ -25,6 +25,7 @@ the main file can get argument input (from cmd) either input from user meanwhile
 the code split to 2 main proccesses: <br>
   1. create the maze, edge and loop over the edge list via using union-find, and creating the "printEdge" list (for painting phase) <br>
   2. paint phase - use "linear transformation" function to take ea idx of vertex num and make for that ver a cordinates in the plane of the frame window that gonna be painted, then painting the edges via drawing lines between every two points of given relevant edge (reminder - existence filed = true) <br>
+<br>
 side note: we used the Swing built in system of java to paint the maze 
 
 
